@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>tony's blog </title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+
+  <ul> 
+
+    <li><%= link_to 'blog', root_path %></li>
+    <% if !user_signed_in? %>
+      <li><%= link_to 'signup', new_user_registration_path %></li>
+      <li><%= link_to 'login', new_post_path %></li>
+    <% end %>
+    <% if user_signed_in? %>
+      <li><%= link_to 'New Post', new_post_path %></li>
+      <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+      <li><%= link_to 'update profile', edit_user_registration_path %></li>
+  <% end %>
+  </ul>
+
+
+  
+  <div class='wrap'></div>
+  <div class='form'>
+  <% flash.each do |name, msg| %>
+  <%= content_tag(:div, msg, class: 'alert') %>
+  <% end %>
+  </div>
+
+<%= yield %>
+
+</body>
+</html>

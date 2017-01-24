@@ -1,0 +1,9 @@
+<div class='list'>
+  <div><h1>POSTS</h1></div>
+<% @post.each do |post| %>
+<div>
+  <h2><%= link_to post.title, post %></h2>
+  <p> <%= post.created_at %></p><hr>
+</div>
+<% end %>
+</div>
